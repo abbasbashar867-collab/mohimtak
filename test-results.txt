@@ -1,0 +1,199 @@
+تاريخ التشغيل: 2026-11-26 23:46 (بغداد)
+
+== اختبارات الوحدة ==
+✔ image: clear card accepted and re-encoded without metadata (120.893001ms)
+✔ image: PNG and WebP converted to JPEG (194.639108ms)
+✔ image: bad files rejected (156.952279ms)
+✔ service: success stores two private files under the user folder (120.347873ms)
+✔ service: duplicate detected before anything is created (110.943226ms)
+registration failed db down
+registration failed storage down
+✔ service: any later failure removes files and user (383.567061ms)
+✔ service: invalid or identical images create nothing (218.162602ms)
+✔ service: bad referral code creates nothing; valid code reaches the database (414.447878ms)
+✔ service: code suspended between check and save rolls everything back (128.569962ms)
+✔ phone: all accepted spellings normalize to one value (0.755547ms)
+✔ phone: invalid numbers rejected (0.123858ms)
+✔ password rules (0.687471ms)
+✔ registration: identical form for client and company (11.6804ms)
+✔ registration: each required field enforced (0.829944ms)
+✔ registration: extra or removed fields refused (0.298172ms)
+✔ routing: only approved accounts reach a portal (0.097632ms)
+✔ csrf origin check and ip parsing (0.627484ms)
+✔ registration: referral code optional, normalized, format checked (0.39312ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 18
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2266.290148
+
+== اختبارات قاعدة البيانات ==
+PASS bootstrap: second super admin refused
+PASS register: unnormalized phone refused
+PASS register: email must match auth user
+PASS register: one document refused
+PASS register: same doc type twice refused
+PASS register: another user folder refused
+PASS register: documents not uploaded refused
+PASS register: admin cannot become client
+PASS register: failed attempts leave no partial rows
+PASS register: duplicate phone refused
+PASS register: same user twice refused
+PASS register: all accounts start pending
+PASS register: two documents per account
+PASS fraud: reused document flagged
+PASS fraud: flagged account not auto-banned
+PASS anon: cannot read profiles
+PASS anon: cannot read documents
+PASS anon: cannot see storage objects
+PASS anon: public settings only
+PASS anon: private settings hidden
+PASS anon: cannot call register_account
+PASS client: sees only own profile
+PASS client: cannot see documents, even own
+PASS client: cannot read audit log
+PASS client: cannot read settings table
+PASS client: cannot self-approve
+PASS client: cannot grant self admin
+PASS client: cannot call review
+PASS client: cannot change status
+PASS client: cannot fetch document path
+PASS client: cannot bootstrap admin
+PASS client: cannot touch rate limiter
+PASS client: cannot list purge queue
+PASS client: cannot see storage objects
+PASS client: cannot write to storage
+PASS storage: restrictive policy beats permissive mistake
+PASS admin: sees all requests
+PASS admin: sees document records
+PASS admin: no direct storage access (server proxy only)
+PASS admin: view returns path
+PASS audit: document view recorded
+PASS approve: name required
+PASS approve: age 18+ confirmation required
+PASS approve: document confirmation required
+PASS reject: reason required
+PASS approve: client
+PASS approve: company
+PASS review: cannot review twice
+PASS reject: with reason
+PASS status: rejected cannot jump to approved
+PASS admin: no direct table writes
+PASS admin: cannot delete audit log
+PASS retention: rejected documents scheduled (30 days)
+PASS retention: approved documents kept
+PASS status: suspend
+PASS status: ban
+PASS retention: ban preserves evidence
+PASS status: reactivate
+PASS retention: hold lifted on reactivation
+PASS history: every transition recorded
+PASS purge: due documents listed
+PASS purge: refused while file still exists
+PASS service: no direct table writes
+PASS purge: queue emptied
+PASS purge: purged document not viewable
+PASS purge: cannot reopen without documents
+PASS append-only: audit update blocked
+PASS append-only: history delete blocked
+PASS append-only: truncate blocked
+PASS cleanup: only orphan listed (admin excluded)
+PASS rate: 1st allowed
+PASS rate: 2nd allowed
+PASS rate: 3rd blocked
+PASS rate: buckets independent
+PASS RLS enabled on every public table
+PASS bucket is private
+PASS marketer: duplicate code refused
+PASS marketer: malformed code refused
+PASS marketer: admin-chosen code stored normalized
+PASS T01 unknown code rejected
+PASS T02 valid code of active marketer accepted
+PASS T03 suspended marketer code rejected
+PASS T01 registration with unknown code refused
+PASS T03 registration with suspended code refused
+PASS T01/T03 refused code leaves no account and no referral
+PASS register: with and without code
+PASS referral: marketer id, type, source, 7-day window stored
+PASS referral: linking audited
+PASS T04 re-registering to switch code refused
+PASS T04/T11 account owner cannot change referral
+PASS perm: user cannot link referrals
+PASS perm: user cannot create codes
+PASS perm: user cannot fabricate milestones
+PASS RLS: users see no marketer data
+PASS perm: server key cannot fabricate milestones
+PASS perm: server key cannot edit referrals
+PASS perm: code check only through rate-limited server
+PASS T04/T11 even admin cannot relink an account
+PASS T11 code locked after first referral
+PASS T11 source immutable even for database owner
+PASS referral records cannot be deleted
+PASS verify: code alone is not proof
+PASS verify: evidence required
+PASS verify: contact must precede registration
+PASS T05/T06 approved referrals without activity: nothing due
+PASS T07 client alone completes: nothing due
+PASS T08 company alone completes: nothing due (no cross-marketer pairing)
+PASS pair: company missing first campaign: nothing due
+PASS T09 both complete for same marketer: eligibility opens
+PASS amount: client 5% of card fee
+PASS amount: company 10% of card fee + platform share
+PASS once: renewal and re-evaluation add nothing
+PASS once: same source operation cannot count twice
+PASS commission amounts immutable
+PASS payout: unapproved commission refused
+PASS T10 double approval refused
+PASS payout: below 25,000 minimum refused
+PASS payout: other marketer commission refused
+PASS T10 second request for same commission refused
+PASS revoke blocked while payout open
+PASS payout: amount must match
+PASS payout: reference required
+PASS T10 paying twice refused
+PASS T10 paid commission cannot be requested again
+PASS stats: marketer file totals
+PASS stats: filter by type and date
+PASS ledger: every transaction balanced
+PASS ledger: payable cleared after payment
+PASS ledger: entries cannot be deleted
+PASS commissions cannot be deleted
+PASS ledger: idempotency key blocks duplicates
+PASS ledger: unbalanced transaction refused
+PASS correction: reversal entry, original kept
+PASS revoke: approved commission reversed
+PASS pair: company commission frozen without qualified client
+PASS pair: new qualified client completes the pair
+PASS pair mode: extra client waits for another company
+PASS payout: suspended account blocks payment
+PASS unlock mode: extra client becomes eligible
+PASS settings: old commissions keep their snapshot
+PASS settings: company rate must exceed client rate
+PASS settings: same money cannot be counted twice
+PASS T12 late retroactive referral refused
+PASS T12 exception documented
+PASS T12 admin may link within the window
+PASS T03 admin cannot link to suspended marketer
+PASS fraud: reused ID image -> needs review, not auto rejected
+PASS fraud: self-referral flagged
+PASS fraud: reused evidence flagged
+PASS evidence: admin view returns path
+PASS audit: evidence view logged
+PASS storage: no direct access to evidence
+PASS RLS enabled on every public table
+PASS concurrency: same phone registered twice -> exactly one succeeds
+PASS concurrency: one profile only
+PASS concurrency: approve vs reject -> exactly one wins
+PASS concurrency: single decision recorded
+PASS T10 concurrency: two payout requests for one commission -> exactly one
+PASS T10 concurrency: single active payout item
+PASS upgrade: new migrations apply on a database with data
+PASS upgrade: existing rows unchanged
+PASS backup: restore succeeds
+PASS backup: restored data identical
+PASS backup: security policies restored
+----
+TOTAL 164  PASSED 164  FAILED 0  SCRIPT_ERRORS 0

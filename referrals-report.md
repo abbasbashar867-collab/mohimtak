@@ -1,0 +1,91 @@
+# تقرير إضافة نظام المسوّقين: الملفات المضافة (+) والمعدلة (M) مقارنة بالنسخة الاحتياطية قبل الإضافة
+M .env.example
++ .github/workflows/ci.yml
++ .github/workflows/purge.yml
++ README.md
++ docs/referrals-report.md
++ netlify.toml
+M package.json
++ scripts/backup.sh
++ src/actions/admin.ts
++ src/actions/auth.ts
++ src/actions/preferences.ts
++ src/actions/setup.ts
++ src/app/account/status/page.tsx
++ src/app/admin/accounts/[id]/page.tsx
++ src/app/admin/audit/page.tsx
++ src/app/admin/layout.tsx
++ src/app/admin/marketers/[id]/page.tsx
++ src/app/admin/marketers/page.tsx
++ src/app/admin/page.tsx
++ src/app/admin/payouts/page.tsx
++ src/app/admin/referral-settings/page.tsx
++ src/app/admin/referrals/[id]/page.tsx
++ src/app/api/admin/documents/[id]/route.ts
++ src/app/api/admin/evidence/[id]/route.ts
++ src/app/api/admin/referrals/[id]/evidence/route.ts
++ src/app/api/cron/purge-documents/route.ts
++ src/app/api/referral-code/route.ts
++ src/app/api/register/route.ts
++ src/app/client/page.tsx
++ src/app/company/page.tsx
++ src/app/globals.css
++ src/app/layout.tsx
++ src/app/legal/privacy/page.tsx
++ src/app/legal/terms/page.tsx
++ src/app/login/page.tsx
++ src/app/page.tsx
++ src/app/register/RegisterForm.tsx
++ src/app/register/page.tsx
++ src/app/setup/page.tsx
++ src/components/AdminUI.tsx
++ src/components/AutoRefresh.tsx
++ src/components/CommissionLists.tsx
++ src/components/EvidenceForm.tsx
++ src/components/Flash.tsx
++ src/components/ImageInput.tsx
++ src/components/PortalHome.tsx
++ src/components/SiteHeader.tsx
++ src/components/SubmitButton.tsx
++ src/lib/auth/session.ts
++ src/lib/env.ts
++ src/lib/format.ts
++ src/lib/i18n/ar.ts
++ src/lib/i18n/ckb.ts
++ src/lib/i18n/config.ts
++ src/lib/i18n/en.ts
++ src/lib/i18n/server.ts
++ src/lib/labels.ts
+M src/lib/registration/service.ts
++ src/lib/security/private-file.ts
++ src/lib/supabase/admin.ts
++ src/lib/supabase/server.ts
++ src/lib/support.ts
+M src/lib/validation/registration.ts
++ src/proxy.ts
++ supabase/install_all.sql
++ supabase/migrations/20261126000005_ledger.sql
++ supabase/migrations/20261126000006_referrals.sql
++ supabase/migrations/20261126000007_referral_functions.sql
++ tests/db/referrals_test.sql
+M tests/db/run.sh
+M tests/unit/documents.test.ts
+M tests/unit/validation.test.ts
+
+ملاحظة: صفحات الواجهة المضافة تشمل التسجيل والدخول والمراجعة (المرحلة 1) التي لم تكن مكتوبة وقت النسخة الاحتياطية.
+
+## الجداول المضافة
++ public.ledger_accounts
++ public.ledger_transactions
++ public.ledger_entries
++ public.marketers
++ public.referrals
++ public.referral_verifications
++ public.referral_evidence
++ public.referral_milestones
++ public.commissions
++ public.marketer_payouts
++ public.marketer_payout_items
+
+## جداول معدلة: لا شيء (أضيفت إعدادات إلى settings فقط، وحاوية تخزين referral-evidence)
+## دوال المرحلة 1 لم تتغير؛ register_account_referred تستدعي register_account داخل معاملة واحدة.
