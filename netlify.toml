@@ -1,5 +1,5 @@
 [build]
-  command = "npm run build"
+  command = "unzip -oq mohimtak-fixed.zip -d .restore && cp -R .restore/mohimtak/src ./src && cp -R .restore/mohimtak/public ./public && npm run build"
   publish = ".next"
 
 [build.environment]
