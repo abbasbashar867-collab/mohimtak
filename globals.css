@@ -1,0 +1,30 @@
+@import "tailwindcss";
+
+:root { --bg: #ffffff; --card: #f5f6f8; --fg: #0b0b0d; --muted: #5b616e; --line: #dde0e6; --accent: #2563eb; }
+.dark { --bg: #09090b; --card: #141418; --fg: #f4f4f5; --muted: #a1a1aa; --line: #2a2a31; --accent: #3b82f6; }
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-card: var(--card);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --font-sans: var(--font-arabic), system-ui, sans-serif;
+}
+
+body { background: var(--bg); color: var(--fg); }
+
+@layer components {
+  .card { @apply rounded-2xl border border-line bg-card p-5; }
+  .label { @apply mb-1 block text-sm font-semibold; }
+  .field { @apply w-full rounded-lg border border-line bg-bg px-3 py-2.5 text-base outline-none focus:border-accent; }
+  .btn { @apply inline-flex items-center justify-center rounded-lg bg-accent px-4 py-2.5 font-semibold text-white disabled:opacity-50; }
+  .btn-quiet { @apply inline-flex items-center justify-center rounded-lg border border-line px-4 py-2.5 font-semibold disabled:opacity-50; }
+  .chip { @apply inline-flex items-center rounded-full border border-line px-3 py-1.5 text-sm; }
+  .chip-on { @apply border-accent bg-accent text-white; }
+  .notice { @apply rounded-lg border px-4 py-3 text-sm; }
+  .notice-ok { @apply border-green-600/50 bg-green-600/10; }
+  .notice-bad { @apply border-red-600/50 bg-red-600/10; }
+  .row { @apply flex flex-wrap items-center justify-between gap-2 border-b border-line py-3 last:border-0; }
+}
