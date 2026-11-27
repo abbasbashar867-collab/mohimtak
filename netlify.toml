@@ -1,10 +1,6 @@
 [build]
-  command = "unzip -oq mohimtak-fixed.zip -d .restore && cp -R .restore/mohimtak/. . && npm run build"
-  publish = ".next"
+  command = "mkdir -p preview && cp index.html preview/index.html"
+  publish = "preview"
 
 [build.environment]
   NODE_VERSION = "22"
-  SECRETS_SCAN_OMIT_KEYS = "NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY,NEXT_PUBLIC_SUPABASE_URL"
-
-[[plugins]]
-  package = "@netlify/plugin-nextjs"
