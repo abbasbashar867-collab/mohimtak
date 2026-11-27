@@ -13,13 +13,13 @@
     "test:db": "bash tests/db/run.sh"
   },
   "dependencies": {
-    "@supabase/ssr": "^0",
+    "@supabase/ssr": "latest",
     "@supabase/supabase-js": "^2",
     "next": "^16",
     "react": "^19.2",
     "react-dom": "^19.2",
     "server-only": "^0.0.1",
-    "sharp": "^0"
+    "sharp": "^0.35"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
